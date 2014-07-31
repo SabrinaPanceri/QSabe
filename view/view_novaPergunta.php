@@ -1,97 +1,87 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 session_start();
 session_cache_expire(10);
 
-
-if(!isset($_SESSION["logado"])||$_SESSION["logado"] !=TRUE){
+if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
     header("Location: ../view/view_login.php");
 }
 session_cache_expire(10);
 include("../model/categoria.php");
-
 ?>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>QSABE - REMAKE</title>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<link href="../style.css" rel="stylesheet" type="text/css" media="screen" />
-</head>
-<body>
-<!-- start header -->
-<div id="header">
-	<div id="menu">
-		<ul>
-			<li><a href="../index.php">Home</a></li>
-                        <li><a href="../view/view_pessoal.php">Pagina Pessoal</a></li>
-                        <li class="current_page_item"><a href="../view/view_novaPergunta.php">Nova Pergunta</a></li>
-                        <li ><a href="../view/view_mural.php">Mural</a></li>
-			<li><a href="#">About</a></li
-		</ul>
-	</div>
-    <div id="menu2">
-		<?php
-                echo '<a href="../view/view_pessoal.php">Bem vindo! '.$_SESSION['nome_exibicao'].'</a>';
-                echo '<a href="../controller/controller_Logoff.php">Logout</a>';
-                ?>
-	</div>
-</div>
-<!-- end header -->
-<hr />
-<!-- start page -->
-<div id="page">
-	<!-- start content -->
-	<div id="content">
-		<div class="post">
-			<h1 class="title">Nova Pergunta</h1>
-                        <div class="entry">
-                            <form name="pergunta_form" method="post" action="/qsabe/controller/controller_novaPergunta.php">
-                            </br></br></br>    
-                        <textArea rows="5" cols="50" name="pergunta_txt">Digite Aqui sua Pergunta!</textarea>
-                            </br>
-                            Categoria: 
-                            </br>
-                            <select name="categoria_slt">
-                                <?php
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <?php include 'head.php'; ?>        
+    </head>
+
+    <body>
+        <div class="container">
+
+            <?php include 'menutopo.php'; ?>
+
+            <div class="row clearfix">
+
+                <?php include 'usuariosdados.php'; ?>
+
+
+                <div class="col-md-6 column">
+                    <form class="form form-vertical" name="pergunta_form" method="post" action="/qsabe/controller/controller_novaPergunta.php">
+                        <div class="control-group">
+                            <label>Título da pergunta</label>
+                            <div class="controls">
+                                <input type="text" class="form-control"  name="pergunta_txt"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label>Categoria</label>
+                            <div class="controls">
+                                <select class="form-control" name="categoria_slt">
+                                    <?php
                                     $categoria = new categoria();
                                     $html = $categoria->listarCategoriasSite();
-                                    if($html===NULL){
+                                    if ($html === NULL) {
                                         //nenhuma categoria disponivel
                                         echo '<option value="0">Categoria</option>';
-                                    }  else {
+                                    } else {
                                         echo $html;
                                     }
-                                ?>
-                            </select>
-                            <input type="submit" name="pergunta_btn" value="Fazer Pergunta"/>
-                            </br>
-                            </br>
-                            </br>
-                            </form>
-			</div>
-		</div>
-	</div>
-	<div style="clear: both;">&nbsp;</div>
-</div>
-<!-- end page -->
-<hr />
-<!-- start footer -->
-<div id="footer">
-	<p>&copy;2007 All Rights Reserved. &nbsp;&bull;&nbsp; Designed by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
-</div>
-<!-- end footer -->
+                                    ?>
+                                </select>
+                            </div>
+                        </div>    
+                        <div class="control-group">
+                            <label></label>
+                            <div class="controls">
+                                <button type="submit" class="btn btn-default" name="pergunta_btn">
+                                    Enviar
+                                </button>
+                            </div>
+                        </div>   
+                    </form>
+                </div>
+                <div class="col-md-4 column">
+                    <div class="panel-group" id="panel-638496">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <a class="panel-title" data-toggle="collapse" data-parent="#panel-638496" href="#panel-element-249930">Perguntas novas!</a>
+                            </div>
+                            <div id="panel-element-249930" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <!-- COLOCAR FUNÇÃO PARA ALIMENTAR COM AS PERGUNTAS NOVAS CADASTRADAS POR OUTROS USUÁRIOS-->
+                                    Pergunta X
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <?php include_once 'footer.php' ?>       
 
-</body>
+    </body>
 </html>
 
 

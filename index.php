@@ -1,152 +1,94 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>QSabe</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-Design by Free CSS Templates
-http://www.freecsstemplates.org
-Released for free under a Creative Commons Attribution 2.5 License
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../js/scripts.js"></script>
+    </head>
 
-Name       : Tastelessly
-Description: A very light design suitable for community sites and blogs.
-Version    : 1.0
-Released   : 20080122
-
--->
-
-<?php
-if(!isset($_SESSION)){
-    session_start();
-}
-session_cache_expire(10);
-?>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>QSABE - REMAKE</title>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-</head>
-<body>
-<!-- start header -->
-<div id="header">
-	<div id="menu">
-		<ul>
-			<li><a href="index.php">Home</a></li>
-			<li><a href="#">About</a></li
-		</ul>
-	</div>
-<div id="menu2">
-		<?php               
-                    echo '<a href="/qsabe/view/view_login.php">Login</a>';
-                ?>
-	</div>
-</div>
-<div id="logo">
-	<h1><a href="#">Tasteleslly</a></h1>
-	<h2>By Free CSS Templates</h2>
-	</div>
-<!-- end header -->
-<hr />
-<!-- start page -->
-<div id="page">
-	<!-- start content -->
-	<div id="content">
-		<div class="post">
-			<h1 class="title"><a href="#">About This Template</a></h1>
-			<p class="meta"><small>Posted on October 24th, 2007 by <a href="#">Someone</a></small></p>
-			<div class="entry">
-				<p><strong>Tastelessly</strong> is a free, fully standards-compliant CSS template designed by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>. This free template is released under a <a href="http://creativecommons.org/licenses/by/2.5/">Creative Commons Attributions 2.5</a> license, so you're pretty much free to do whatever you want with it  (even use it commercially) provided you keep the links in the footer  intact. Have fun with it :)</p>
-				<p>This template is also available as a <a href="http://www.freewpthemes.net/preview/newsflash/">WordPress theme</a> at <a href="http://www.freewpthemes.net/">Free WordPress Themes</a>.</p>
-				<h2>A Heading Level 2</h2>
-				<p>This paragraph is followed by a sample unordered list:</p>
-				<ul>
-					<li><a href="#">Consectetuer adipiscing elit</a></li>
-					<li><a href="#">Metus aliquam pellentesque</a></li>
-					<li><a href="#">Urnanet non molestie semper</a></li>
-					<li><a href="#">Proin gravida orci porttitor</a></li>
-				</ul>
-				<h3>Heading Level 3</h3>
-				<p>While this one is followed by a blockquote:</p>
-				<blockquote>
-					<p>Donec leo, vivamus nibh in augue praesent a lacus at urna congue rutrum. Quisque dictum integer nisl risus, sagittis convallis, rutrum id, congue, and nibh.</p>
-				</blockquote>
-			</div>
-			<p class="links"><a href="#" class="comments">Comments (33)</a> &nbsp;&nbsp;&nbsp; <a href="#" class="permalink">Permalink</a></p>
-			<p class="tags"><strong>Tags:</strong> <a href="#">dolor</a> <a href="#">ipsum</a> <a href="#">lorem</a> <a href="#">sit amet</a> <a href="#">dolor</a> <a href="#">ipsum</a> <a href="#">lorem</a> <a href="#">sit amet</a></p>
-		</div>
-	</div>
-	<!-- end content -->
-	<!-- start sidebar one -->
-	<div id="sidebar1" class="sidebar">
-		<ul>
-			<li id="recent-posts">
-				<h2>Recent Posts</h2>
-				<ul>
-					<li>
-						<h3><a href="#">Aliquam Libero</a></h3>
-						<p>Nullam ante orci, eget, tempus quis, ultrices in, est. Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat vel, suscipit in, mattis placerat, nulla. Sed ac leo. Pellentesque imperdiet. <a href="#">More&hellip;</a></p>
-					</li>
-					<li>
-						<h3><a href="#">Semper Vestibulum</a></h3>
-						<p>Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum. Quisque dictum integer nisl risus, sagittis convallis, rutrum id, congue, and nibh. <a href="#">More&hellip;</a></p>
-					</li>
-					<li>
-						<h3><a href="#">Etiam Malesuada</a></h3>
-						<p>Donec leo. Vivamus fermentum nibh in augue. Praesent a lacus at urna congue rutrum. Nulla enim eros, porttitor eu, tempus id, varius non, nibh. Duis enim nulla, luctus eu, dapibus lacinia, venenatis id, quam. Vestibulum imperdiet, magna nec eleifend rutrum, nunc lectus vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. <a href="#">More&hellip;</a></p>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-	<!-- end sidebar one -->
-	<!-- start sidebar two -->
-	<div id="sidebar2" class="sidebar">
-		<ul>
-			<li>
-				<h2>Categories</h2>
-				<ul>
-					<li><a href="#">Aliquam libero</a></li>
-					<li><a href="#">Consectetuer elit</a></li>
-					<li><a href="#">Metus pellentesque</a></li>
-					<li><a href="#">Suspendisse mauris</a></li>
-					<li><a href="#">Urnanet molestie semper</a></li>
-					<li><a href="#">Proin orci porttitor</a></li>
-				</ul>
-			</li>
-			<li>
-				<h2>Archives</h2>
-				<ul>
-					<li><a href="#">September</a> (23)</li>
-					<li><a href="#">August</a> (31)</li>
-					<li><a href="#">July</a> (31)</li>
-					<li><a href="#">June</a> (30)</li>
-					<li><a href="#">May</a> (31)</li>
-				</ul>
-			</li>
-			<li>
-				<h2>Lorem ipsum dolor </h2>
-				<ul>
-					<li><a href="#">Aliquam libero</a></li>
-					<li><a href="#">Consectetuer elit</a></li>
-					<li><a href="#">Metus pellentesque</a></li>
-					<li><a href="#">Suspendisse mauris</a></li>
-					<li><a href="#">Urnanet molestie semper</a></li>
-					<li><a href="#">Proin orci porttitor</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-	<!-- end sidebar two -->
-	<div style="clear: both;">&nbsp;</div>
-</div>
-<!-- end page -->
-<hr />
-<!-- start footer -->
-<div id="footer">
-	<p>&copy;2007 All Rights Reserved. &nbsp;&bull;&nbsp; Designed by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
-</div>
-<!-- end footer -->
-
-
-</body>
+    <body>
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="page-header">
+                        <h1>
+                            QSabe <small>Um ambiente de convivência esclarecedor!</small>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-2 column">
+                    <img src="img/ideia.jpg" class="img-responsive">
+                </div>
+                <div class="col-md-6 column">
+                    <h3>
+                        Sobre
+                    </h3>
+                    <p>
+                        Este projeto apresenta um protótipo do sistema QSabe, proposto por Fulano em 20XX. Em sua dissertação, o autor apresenta um sistema de perguntas e respostas. Neste sentindo, apresentamos um protótipo funcional com funcionalidades de autenticação de seção, cadastramento de perguntas, cadastramento de respostas, busca por respostas enviadas para uma mesma pergunta, edição de pergutas já cadastrados e a lista de perguntas e respostas cadastradas por todos os usuários do sistema....
+                    </p>
+                    <p>
+                        <a class="btn" href="sobre.html">..continua »</a>
+                    </p>
+                </div>
+                <div class="col-md-4 column">
+                    <form class="form-horizontal" role="form" action="/qsabe/controller/controller_autenticar.php" method="post">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Usuario </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="usuario_txt" maxlength="45" class="form-control" id="inputEmail3" value="sabrinapanceri@gmail.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">Senha </label>
+                            <div class="col-sm-10">
+                                <input type="password" name="pass_txt" maxlength="45" class="form-control" id="inputPassword3" value="123123">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label><input type="checkbox"> Lembrar dados </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default" value="Entrar"> <a href="pessoal.html"> Entrar </a></button>
+                                <a class="btn btn-default" href="view/view_criarconta.php"> Cadastrar </a>
+                            </div>
+                        </div>
+                    </form>
+                    <?php
+                    session_start('');
+                    session_cache_expire(10);
+                    if ($_SESSION != NULL) {
+                        $mensagem = $_SESSION['msg_error'];
+                        if (strlen($mensagem) > 1) {
+                            echo '<p>' . $mensagem . '</p>';
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p>Copyright &copy; Grupo 2 AICV - Eduardo, Guilherme e Sabrina </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>
