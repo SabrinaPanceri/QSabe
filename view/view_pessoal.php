@@ -32,25 +32,27 @@ include_once "../model/usuario.php";
 
 
                 <div class="col-md-6 column">
-                    <div class="list-group">
-                        <h4 class="list-group-item-heading">
-                            <a href="#" class="list-group-item active">Suas Perguntas</a>
-                        </h4>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 style="margin: 0">Suas Perguntas</h4>                        
+                        </div>
+                        <div class="panel-body">
                         <!-- COLOCAR FUNÇÃO PARA ALIMENTAR COM AS PERGUNTAS FEITAS PELO USUÁRIO-->
                         <?php
                         $usuario = new usuario();
                         $usuario->idusuario = $_SESSION["idusuario"];
                         echo $usuario->buscaperguntas();
                         ?>
+                        </div>
 
                     </div>
 
-                    <div class="list-group">
-                        <h4 class="list-group-item-heading">
-                            <a href="#" class="list-group-item active">Suas Respostas</a>
-                        </h4>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 style="margin: 0">Suas Respostas</h4>
+                        </div>
                         <!-- COLOCAR FUNÇÃO PARA ALIMENTAR COM AS RESPOSTAS FEITAS PELO USUÁRIO-->
-                        <div class="list-group-item">
+                        <div class="panel-body">
                             <?php
                             $usuario = new usuario();
                             $usuario->idusuario = $_SESSION["idusuario"];
@@ -61,7 +63,6 @@ include_once "../model/usuario.php";
                 </div>
                 
                 <div class="col-md-4 column">
-                    <div class="panel-group" id="panel-638496">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <a class="panel-title" data-toggle="collapse" data-parent="#panel-638496" href="#panel-element-249930">Perguntas novas!</a>
@@ -77,8 +78,7 @@ include_once "../model/usuario.php";
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="panel-group" id="panel-638496">
+
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <a class="panel-title" data-toggle="collapse" data-parent="#panel-638496" href="#panel-element-249930">Perguntas Para Eu Responder!</a>
@@ -94,7 +94,6 @@ include_once "../model/usuario.php";
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
 
             </div>
