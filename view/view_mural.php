@@ -3,6 +3,8 @@ if (!isset($_SESSION)) {
     session_start();
 }
 session_cache_expire(10);
+//verificar se usuario está logado
+include_once("../controller/is_logado.php");
 //echo $_SESSION['usuario'];
 //echo '</br>';
 //echo $_SESSION['nome'];

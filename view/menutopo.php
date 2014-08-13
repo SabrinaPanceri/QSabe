@@ -3,7 +3,10 @@
             <div class="page-header">
                 <ul class="nav nav-pills">
                     <li class="active">
-                        <a href="index.html">Inicial</a>
+                        <a href="../index.php">Inicial</a>
+                    </li>
+                    <li>
+                        <a href="view_pessoal.php">Pessoal</a>
                     </li>
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Perguntas<strong class="caret"></strong> </a>
@@ -13,7 +16,7 @@
                             </li>
                             <li class="divider"> </li>
                             <li>
-                                <a href="pesquisar_pergunta.html">Pesquisar</a>
+                                <a href="view_pesquisarpergunta.php">Pesquisar</a>
                             </li>
                         </ul>
                     </li>

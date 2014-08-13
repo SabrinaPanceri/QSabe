@@ -1,5 +1,5 @@
 <?php
-include '../BD/BD.php';
+include_once '../BD/BD.php';
 
 if (!isset($_SESSION)) {
     session_start();
@@ -37,7 +37,7 @@ class Categoria {
         if (mysqli_num_rows($result) > 0) {
             //pego cat por cat 
             while ($row = mysqli_fetch_assoc($result)) {
-                $nomecat = $row['nome'];
+                $nomecat = utf8_decode($row['nome']);
                 $idcat = $row['idcategoria'];
                 $idcatpai = $row['idcategoriaPai'];
                 $html = $html . '<option value="' . $idcat . '">' . $base . $nomecat . '</option>';
@@ -56,7 +56,7 @@ class Categoria {
         } else {
             //pego cat por cat 
             while ($row = mysqli_fetch_assoc($result)) {
-                $nomecat = $row['nome'];
+                $nomecat = utf8_decode($row['nome']);
                 $idcat = $row['idcategoria'];
                 $idcatpai = $row['idcategoriaPai'];
                 $html = $html . '<option value="' . $idcat . '">' . $nomecat . '</option>';

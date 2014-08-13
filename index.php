@@ -37,21 +37,21 @@
                         Este projeto apresenta um protótipo do sistema QSabe, proposto por Fulano em 20XX. Em sua dissertação, o autor apresenta um sistema de perguntas e respostas. Neste sentindo, apresentamos um protótipo funcional com funcionalidades de autenticação de seção, cadastramento de perguntas, cadastramento de respostas, busca por respostas enviadas para uma mesma pergunta, edição de pergutas já cadastrados e a lista de perguntas e respostas cadastradas por todos os usuários do sistema....
                     </p>
                     <p>
-                        <a class="btn" href="sobre.html">..continua »</a>
+                        <a class="btn" href="view/view_sobre.php">..continua »</a>
                     </p>
                 </div>
                 <div class="col-md-4 column">
-                    <form class="form-horizontal" role="form" action="/qsabe/controller/controller_autenticar.php" method="post">
+                    <form class="form-horizontal" role="form" action="./controller/controller_autenticar.php" method="post">
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Usuario </label>
                             <div class="col-sm-10">
-                                <input type="text" name="usuario_txt" maxlength="45" class="form-control" id="inputEmail3" value="sabrinapanceri@gmail.com">
+                                <input type="text" name="usuario_txt" maxlength="45" class="form-control" id="inputEmail3" value="">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">Senha </label>
                             <div class="col-sm-10">
-                                <input type="password" name="pass_txt" maxlength="45" class="form-control" id="inputPassword3" value="123123">
+                                <input type="password" name="pass_txt" maxlength="45" class="form-control" id="inputPassword3" value="">
                             </div>
                         </div>
                         <div class="form-group">
@@ -63,7 +63,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default" value="Entrar"> <a href="pessoal.html"> Entrar </a></button>
+                                <button type="submit" class="btn btn-default" value="Entrar"> Entrar </button>
                                 <a class="btn btn-default" href="view/view_criarconta.php"> Cadastrar </a>
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 <?php
-include 'DBException.php';
+include_once 'DBException.php';
 
 class BD {
 

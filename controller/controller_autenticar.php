@@ -1,6 +1,6 @@
 <?php
 // Inclui o arquivo com o sistema de segurança
-include("../model/usuario.php");
+include_once "../model/usuario.php";
  
 // Verifica se um formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -11,11 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $user = new usuario();
 
-    // Utiliza uma função criada no seguranca.php pra validar os dados digitados
+    // Utiliza uma função criada no usuario.php pra validar os dados digitados
     if ($user->validaUsuario($usuario, $senha) == true) {
             header("Location: ../view/view_pessoal.php");
         } else {
-            header("Location: ../view/view_login.php");
+            header("Location: ../index.php");
         }
 }
 

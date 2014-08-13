@@ -1,12 +1,14 @@
 <?php
 session_start();
 session_cache_expire(10);
+//verificar se usuario está logado
+include_once("../controller/is_logado.php");
 
 if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
-    header("Location: ../view/view_login.php");
+    header("Location: ../index.php");
 }
 session_cache_expire(10);
-include("../model/categoria.php");
+include_once "../model/categoria.php";
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +72,11 @@ include("../model/categoria.php");
                             <div id="panel-element-249930" class="panel-collapse collapse in">
                                 <div class="panel-body">
                                     <!-- COLOCAR FUNÇÃO PARA ALIMENTAR COM AS PERGUNTAS NOVAS CADASTRADAS POR OUTROS USUÁRIOS-->
-                                    Pergunta X
+                                    <?php
+                                        $usuario = new usuario();
+                                        $usuario->idusuario = $_SESSION["idusuario"];
+                                        echo $usuario->buscaperguntasmaisnovas();
+                                    ?>
                                 </div>
                             </div>
                         </div>

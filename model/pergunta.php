@@ -1,5 +1,5 @@
 <?php
-include '../BD/BD.php';
+include_once '../BD/BD.php';
 
 if (!isset($_SESSION)) {
     session_start();
@@ -27,7 +27,8 @@ class pergunta {
         //cria usuario
         $_SESSION['msg_error'] = '';
         //verifica se a pergunta existe
-        $sql = 'select count(idpergunta) as contador from qsaberemake.pergunta where desc_pergunta like \'' . $this->desc . '\'';
+        $pergunta = mysql_escape_string(utf8_encode(trim($this->desc)));
+        $sql = 'select count(idpergunta) as contador from qsaberemake.pergunta where desc_pergunta like \'' . $pergunta . '\'';
         $result = $this->banco->executequery($sql);
         $row = mysqli_fetch_assoc($result);
         if ($row["contador"] > 0) {
@@ -37,11 +38,11 @@ class pergunta {
 
         //Salva Pergunta
         $sql = 'insert into qsaberemake.pergunta (desc_pergunta,data_reg,idusuario)'
-                . 'values (\'' . $this->desc . '\',now(),' . $this->user . ')';
+                . 'values (\'' . $pergunta . '\',now(),' . $this->user . ')';
         $this->banco->executequery($sql);
 
         //busca no bd o id da pergunta
-        $sql2 = 'select idpergunta from qsaberemake.pergunta where desc_pergunta like \'' . $this->desc . '\'';
+        $sql2 = 'select idpergunta from qsaberemake.pergunta where desc_pergunta like \'' . $pergunta . '\'';
         $result2 = $this->banco->executequery($sql2);
 
         //armazena o id da pergunta
@@ -61,13 +62,10 @@ class pergunta {
         $_SESSION['msg_error'] = '';
         //verifica se a pergunta existe
         $sql = 'select desc_pergunta,data_reg,idusuario from qsaberemake.pergunta where idpergunta =' . $this->idpergunta;
+//        die($sql);
         $result = $this->banco->executequery($sql);
         $row = mysqli_fetch_assoc($result);
-//        if($row==NULL){
-//            $_SESSION['msg_error']= 'Pergunta Não Existe';
-//            return FALSE;
-//        }
-        $this->desc = $row["desc_pergunta"];
+        $this->desc = utf8_decode($row["desc_pergunta"]);
         $this->user = $row["idusuario"];
         $this->data_reg = $row["data_reg"];
 
@@ -79,7 +77,7 @@ class pergunta {
             $_SESSION['nome_exibicao'] = 'Usuário Não encontrado';
             $this->nome_user = 'Usuário Não encontrado';
         } else {
-            $this->nome_user = $row["nome_exibicao"];
+            $this->nome_user = utf8_decode($row["nome_exibicao"]);
         }
 
         $sql = 'select count(idresposta) as contadorresposta from qsaberemake.resposta where idpergunta =' . $this->idpergunta;
@@ -101,7 +99,7 @@ class pergunta {
             $sql2 = 'select nome_exibicao from qsaberemake.usuario where idusuario =' . $row["idusuario"];
             $result2 = $this->banco->executequery($sql2);
             $row2 = mysqli_fetch_assoc($result2);
-            $html = '<div class="post"> <div class="entry"><p>' . $row["desc_resposta"] . '</p></br></br>by:' . $row2["nome_exibicao"] . ', ' . $row["data_reg"] . ' </div> </div>';
+            $html = '<div class="post"> <div class="entry"><p>' . utf8_decode($row["desc_resposta"]) . '</p></br></br>by:' . utf8_decode($row2["nome_exibicao"]) . ', ' . $row["data_reg"] . ' </div> </div>';
             $html_geral = $html_geral . $html;
         }
         return $html_geral;
@@ -121,12 +119,12 @@ class pergunta {
             $row2 = mysqli_fetch_assoc($result2);
 
             $idpergunta = $row["idpergunta"];
-            $desc_pergunta = $row["desc_pergunta"];
-            $nome_exibicao = $row2["nome_exibicao"];
+            $desc_pergunta = utf8_decode($row["desc_pergunta"]);
+            $nome_exibicao = utf8_decode($row2["nome_exibicao"]);
             $data_reg = $row["data_reg"];
 
             $html = "<li class='list-group-item' id='$idpergunta'>                        
-                        <a href='/qsabe/view/view_pergunta.php?pergunta=$idpergunta'>$desc_pergunta</a></p>by:$nome_exibicao date:$data_reg
+                        <a href='../view/view_pergunta.php?pergunta=$idpergunta'>$desc_pergunta</a></p>by:$nome_exibicao date:$data_reg
                     </li>";
 
             $html_geral = $html_geral . $html;
@@ -134,6 +132,39 @@ class pergunta {
         return $html_geral;
     }
 
+    
+    function buscaPerguntaPorTermo($termo,$termoCategoria) {
+        //cria usuario
+        $_SESSION['msg_error'] = '';
+        $html_geral = '';
+        
+        //verifica se a pergunta existe
+        $sql = 'select desc_pergunta,perg.data_reg,perg.idpergunta,perg.idusuario,catpeg.idcategoria from qsaberemake.pergunta perg join qsaberemake.categoria_pergunta catpeg on (perg.idpergunta = catpeg.idpergunta) where desc_pergunta like \'%'.$termo.'%\' and idcategoria = '.$termoCategoria.' order by data_reg desc';
+        $result = $this->banco->executequery($sql);
+        if(mysqli_num_rows($result)==0){
+                $html_geral = 'Nenhum Registro Encontrado.';
+                return $html_geral;
+            }
+        while ($row = mysqli_fetch_assoc($result)) {
+            
+            $sql2 = 'select nome_exibicao from qsaberemake.usuario where idusuario =' . $row["idusuario"];
+            $result2 = $this->banco->executequery($sql2);
+            $row2 = mysqli_fetch_assoc($result2);
+
+            $idpergunta = $row["idpergunta"];
+            $desc_pergunta = utf8_decode($row["desc_pergunta"]);
+            $nome_exibicao = utf8_decode($row2["nome_exibicao"]);
+            $data_reg = $row["data_reg"];
+
+            $html = "<li class='list-group-item' id='$idpergunta'>                        
+                        <a href='../view/view_pergunta.php?pergunta=$idpergunta'>$desc_pergunta</a></p>by:$nome_exibicao date:$data_reg
+                    </li>";
+
+            $html_geral = $html_geral . $html;
+        }
+        return $html_geral;
+    }
+    
 }
 
 ?>

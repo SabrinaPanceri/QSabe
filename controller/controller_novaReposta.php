@@ -1,6 +1,6 @@
 <?php
 
-include '../model/resposta.php';
+include_once '../model/resposta.php';
 
 if(!isset($_SESSION)){
     session_start();

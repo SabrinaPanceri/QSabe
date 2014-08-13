@@ -6,83 +6,85 @@
  */
 session_start();
 session_cache_expire(10);
+//verificar se usuario está logado
+include_once("../controller/is_logado.php");
 
 
 if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
-    header("Location: ../view/view_login.php");
+    header("Location: ../index.php");
 }
 session_cache_expire(10);
-include("../model/pergunta.php");
-include("../model/resposta.php");
+include_once "../model/pergunta.php";
+include_once "../model/resposta.php";
 ?>
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <?php include_once 'head.php'; ?>
 
-
+    </head>
 
     <body>
-        <!-- start header -->
-        <div id="header">
-            <div id="menu">
-                <ul>
-                    <li><a href="../index.php">Home</a></li>
-                    <li><a href="../view/view_pessoal.php">Pagina Pessoal</a></li>
-                    <li><a href="../view/view_novaPergunta.php">Nova Pergunta</a></li>
-                    <li class="current_page_item"><a href="../view/view_mural.php">Mural</a></li>
-                    <li><a href="#">About</a></li
-                </ul>
-            </div>
-            <div id="menu2">
-<?php
-echo '<a href="../view/view_pessoal.php">Bem vindo! ' . $_SESSION['nome_exibicao'] . '</a>';
-echo '<a href="../controller/controller_Logoff.php">Logout</a>';
-?>
-            </div>
-        </div>
-        <!-- end header -->
-        <hr />
-        <!-- start page -->
-        <div id="page">
-            <!-- start content -->
-            <div id="content">
-                <div class="post">
-<?php
-$perguntapag = new pergunta();
-$perguntapag->idpergunta = $_GET["pergunta"];
-$_SESSION["idpergunta"] = $perguntapag->idpergunta;
-$perguntapag->carregarPergunta();
-echo '<h1 class="title">Pergunta #' . $perguntapag->idpergunta . '</h1>';
-echo '<div class="entry">';
-echo '<p>';
-echo $perguntapag->desc;
-echo '</br></br> by:' . $perguntapag->nome_user;
-echo '</p>';
-echo '</div>';
-echo '</div>';
-?>
+        <div class="container">
+         <?php include_once 'menutopo.php'; ?>
+            <div class="row clearfix">
 
-                    <form name="resposta_form" method="post" action="/qsabe/controller/controller_novaReposta.php">
+                <?php include_once 'usuariosdados.php'; ?>
+            
+                
+                <div class="col-md-6 column">
+                    <div class="list-group">
+                        <h4 class="list-group-item-heading">
+                            <a href="#" class="list-group-item active">Pergunta</a>
+                        </h4>
+                        <!-- COLOCAR FUNÇÃO PARA ALIMENTAR COM AS PERGUNTAS FEITAS PELO USUÁRIO-->
+                        <?php
+                        $perguntapag = new pergunta();
+                        $perguntapag->idpergunta = $_GET["pergunta"];
+                        $_SESSION["idpergunta"] = $perguntapag->idpergunta;
+                        $perguntapag->carregarPergunta();
+                        echo $perguntapag->desc;
+                        echo '</br></br>by: ' . $perguntapag->nome_user. '  '. $perguntapag->data_reg;
+                        ?>
+                        
+                        <form name="resposta_form" method="post" action="../controller/controller_novaReposta.php">
                         </br></br></br>    
                         <textArea rows="5" cols="50" name="resposta_txt">Digite Aqui sua Reposta!</textarea>
                             </br>
                             <input type="submit" name="resposta_btn" value="Adicionar Resposta"/> 
-                
-                </br></br>
-                        <?php
-                        //echo '<div class="post">';
+                        </form>
+                        </br>
+                        
+                    </div>
+        <!-- end header -->
+        <hr />
+        
+                 <div class="list-group">
+                        <h4 class="list-group-item-heading">
+                            <a href="#" class="list-group-item active">Respostas</a>
+                        </h4>
+                        <!-- COLOCAR FUNÇÃO PARA ALIMENTAR COM AS RESPOSTAS FEITAS PELO USUÁRIO-->
+                        <div class="list-group-item">
+                            <?php
                         $respostapag = new resposta();
                         $respostapag->idpergunta = $_GET["pergunta"];
+                        $respostapag->user = $_SESSION["idusuario"];
                         $respostapag->verificaRespostas();
+                        
                         if ($respostapag->respostas > 0) {
                             echo $respostapag->buscarespostas();
                         }
-                        //echo '</div>';
-                        ?>
+                            ?>
+                        </div>
+                    </div>
                 </div>
+            
+            </div>
 
 	<div style="clear: both;">&nbsp;</div>
-</div>
+        </div>
 <!-- end page -->
 <hr />
     

@@ -25,7 +25,7 @@
 		<div class="post">
 			<h1 class="title">Autenticação de Usuário</h1>
                         <div class="entry">
-                            <form method="post" action="/qsabe/controller/controller_autenticar.php">
+                            <form method="post" action="../controller/controller_autenticar.php">
                             </br></br></br>    
                             Usuário: 
                             </br>
@@ -36,7 +36,7 @@
                             </br>
                             <input type="submit" value="Entrar" />
                             </form>
-                            <p>Não possui cadastro ?<a href="/qsabe/view/view_CriarConta.php"> Clique aqui para se cadastrar</a> </p>
+                            <p>Não possui cadastro ?<a href="../view/view_CriarConta.php"> Clique aqui para se cadastrar</a> </p>
                             </br>
                             </br>
                             <?php

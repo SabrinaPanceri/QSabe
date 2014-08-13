@@ -12,7 +12,13 @@
                         ?>
                 </div>
                 <div class="panel-footer">
-                    Posição no ranking: X
+                    <?php
+                    include_once '../model/usuario.php';
+                                $usuario = new usuario();
+                                $usuario->idusuario = $_SESSION["idusuario"];
+                                echo "Avaliação das Respostas: ".$usuario->buscaQualificacaoUsuario();
+                    ?>
+                    
                 </div>
             </div>
         </div>

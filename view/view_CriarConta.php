@@ -1,3 +1,9 @@
+<?php
+//verificar se usuario está logado
+include_once("../controller/is_logado.php");
+include_once "../model/categoria.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -63,10 +69,10 @@
                     <div class="page-header">
                         <ul class="nav nav-pills">
                             <li class="active">
-                                <a href="index.html">Inicial</a>
+                                <a href="index.php">Inicial</a>
                             </li>
                             <li>
-                                <a href="sobre.html">Sobre</a>
+                                <a href="sobre.php">Sobre</a>
                             </li>
                         </ul>
                     </div>
@@ -77,14 +83,14 @@
                     <form role="form" method="post" action="../controller/controller_criarusuario.php" onsubmit="return valida(this);">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nome Completo </label>
-                            <input type="text"  name="usuario_txt" maxlength="45" class="form-control" id="exampleInputEmail1">
+                            <input type="text"  name="nome_txt" maxlength="45" class="form-control" id="exampleInputEmail1">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nome para exibição </label>
                             <input type="text" name="nome_exibicao_txt" maxlength="45" class="form-control" id="exampleInputEmail1">
                         </div>	
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Nome para exibição </label>
+                            <label for="exampleInputEmail1">Data de Nascimento </label>
                             <input type="text" name="data_txt" maxlength="10" class="form-control" id="exampleInputEmail1">
                             <small>(Formato: DD/MM/AAAA)</small>
                         </div>	
@@ -99,6 +105,20 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Confirme a senha </label>
                             <input type="password" name="pass2_txt" maxlength="45" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEspecialidade">Especialidade </label>
+                            <select class="form-control" name="categoria_slt">
+                                <?php
+                                    $categoria = new categoria();
+                                    $html = $categoria->listarCategoriasSite();
+                                    if($html===NULL){
+                                        echo '<option value="0">Categoria</option>';
+                                    }  else {
+                                        echo $html;
+                                    }
+                                ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">Foto </label>

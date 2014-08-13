@@ -1,5 +1,5 @@
 <?php
-include '../model/usuario.php';
+include_once '../model/usuario.php';
 
 if(!isset($_SESSION)){
     session_start();
@@ -18,11 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user->nome = (isset($_POST['nome_txt'])) ? $_POST['nome_txt'] : '';
     $user->data = (isset($_POST['data_txt'])) ? $_POST['data_txt'] : '';
     $user->nome_exibicao = (isset($_POST['nome_exibicao_txt'])) ? $_POST['nome_exibicao_txt'] : '';
-
+    $user->especialidade = (isset($_POST['categoria_slt'])) ? $_POST['categoria_slt'] : '';
     if($user->salvausuario()){
         header("Location: ../view/view_pessoal.php");
     }  else {
-        header("Location: ../view/view_login.php");
+        header("Location: ../index.php");
     }
 }
 
