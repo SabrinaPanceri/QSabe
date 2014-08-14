@@ -2,6 +2,9 @@
 
 include_once '../BD/BD.php';
 
+include_once '../lib/functions.php';
+include_once '../similarity/cosine.php';
+
 
 if (!isset($_SESSION)) {
     session_start();
@@ -80,6 +83,10 @@ class resposta {
      * Busca as Respostas para a Recomendação
      */    
     function buscarespostaspararecomendacao() {
+        
+        
+        
+        
         
     }
     
