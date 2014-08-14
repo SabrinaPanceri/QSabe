@@ -60,7 +60,7 @@ include_once "../model/resposta.php";
                     </div>
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h4 style="margin: 0">Repostas Sugeridas</h4>
+                            <h4 style="margin: 0">Respostas Sugeridas</h4>
                         </div>
                         <div class="panel-body">
                             <div class="respsugeridas">

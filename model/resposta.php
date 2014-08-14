@@ -63,15 +63,16 @@ class resposta {
         $sql = 'select desc_resposta,data_reg,idresposta,idusuario from qsaberemake.resposta where idpergunta =' . $this->idpergunta . ' order by data_reg asc';
         $result = $this->banco->executequery($sql);
         while ($row = mysqli_fetch_assoc($result)) {
-            $sql2 = 'select nome_exibicao from qsaberemake.usuario where idusuario =' . $row["idusuario"];
+            $sql2 = 'select nome_exibicao,imguser from qsaberemake.usuario where idusuario =' . $row["idusuario"];
             $result2 = $this->banco->executequery($sql2);
             $row2 = mysqli_fetch_assoc($result2);
+            $resp_imguser = "../img/users/".($row2['imguser'] =='' ? 'userdefault.jpg' : $row2['imguser'] );
             if($row["idusuario"]==$this->user)
                 {
                 //Não pode qualificar a propria resposta
-                    $html = '<div class="post"> <div class="entry"><p>'.utf8_decode($row["desc_resposta"]).'</p>by:'.utf8_decode($row2["nome_exibicao"]).', '.$row["data_reg"].' </br></div> </div>';
+                    $html = '<div class="post"><div class="thumbimguser"><img src="'.$resp_imguser.'" /></div><div class="entry"><p>'.utf8_decode($row["desc_resposta"]).'</p>by:'.utf8_decode($row2["nome_exibicao"]).', '.$row["data_reg"].' </br></div> </div>';
                 }else{
-                    $html = '<div class="post"> <div class="entry"><p>'.utf8_decode($row["desc_resposta"]).'</p>by:'.utf8_decode($row2["nome_exibicao"]).', '.$row["data_reg"].' </br>'
+                    $html = '<div class="post"><div class="thumbimguser"><img src="'.$resp_imguser.'" /></div><div class="entry"><p>'.utf8_decode($row["desc_resposta"]).'</p>by:'.utf8_decode($row2["nome_exibicao"]).', '.$row["data_reg"].' </br>'
                             . '<p><a href="../view/view_qualifica.php?resposta='.$row["idresposta"].'">Avalie Está resposta</a></p></div> </div>';
                 }
             $html_geral = $html_geral . $html;
@@ -101,29 +102,32 @@ class resposta {
         //Preparando para chamar COSINUS
         // LOWER  A
         $a = limpaString($a);
+        $bs = array();
         // LOWER o array B
         foreach ($b as $i => $item){
-            $b[$i] = limpaString($item);
+            $bs[$i] = limpaString($item);
         }              
         $pergunta = split(' ',$a);
         $saida = array();
         $cosinus = array();
-        foreach ($b as $resp){
+        foreach ($bs as $cont => $resp){
             $resposta = split(' ',$resp);
             $cos = cosinusTokens($pergunta, $resposta);
-            if($cos >= 0.1){
-                $saida[]   = $resp;
+            if($cos >= 0.2){
+                $saida[]   = utf8_decode($b[$cont]);
                 $cosinus[] = $cos;
             }            
-        }
-        array_multisort($cosinus,$saida);
-        array_reverse($cosinus);
-        array_reverse($saida);
+        }        
+            array_multisort($cosinus,$saida);
+            array_reverse($cosinus);
+            array_reverse($saida);
         //FIM cosinus        
         $html ='';
         $html_geral ='';
+        $i = 1;
         foreach ($saida as $resposta){
             $html .= '<div class="post"><div class="entry"><p>'.$resposta.'</p></div></div>';
+            if ($i++ == 5) break;
         }
         $html_geral .=  $html;
         return $html_geral;

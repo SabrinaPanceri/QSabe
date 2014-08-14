@@ -3,9 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/qsabe/view/view_pessoal.php</file>
-            <file>file:/C:/xampp/htdocs/qsabe/model/pergunta.php</file>
-            <file>file:/C:/xampp/htdocs/qsabe/view/view_mural.php</file>
+            <file>file:/C:/xampp/htdocs/QSabe/index.php</file>
+            <file>file:/C:/xampp/htdocs/QSabe/model/usuario.php</file>
+            <file>file:/C:/xampp/htdocs/QSabe/view/view_CriarConta.php</file>
+            <file>file:/C:/xampp/htdocs/QSabe/css/style.css</file>
+            <file>file:/C:/xampp/htdocs/QSabe/controller/controller_autenticar.php</file>
+            <file>file:/C:/xampp/htdocs/QSabe/model/pergunta.php</file>
+            <file>file:/C:/xampp/htdocs/QSabe/view/usuariosdados.php</file>
+            <file>file:/C:/xampp/htdocs/QSabe/similarity/cosine.php</file>
+            <file>file:/C:/xampp/htdocs/QSabe/view/view_pergunta.php</file>
+            <file>file:/C:/xampp/htdocs/QSabe/teste.php</file>
+            <file>file:/C:/xampp/htdocs/QSabe/testecosinus.php</file>
+            <file>file:/C:/xampp/htdocs/QSabe/model/resposta.php</file>
+            <file>file:/C:/xampp/htdocs/QSabe/lib/functions.php</file>
         </group>
     </open-files>
 </project-private>

@@ -1,7 +1,9 @@
 
 
 .post{
+    
     margin: 0 0 10px 0;
+    z-index: 10;
 }
 
 
@@ -24,6 +26,36 @@
     font-weight: bold;
 }
 
+.thumbimguser{
+    float: left;
+    width: 25px;
+    height: 25px; 
+    margin: 0 10px 0 0;
+    overflow: hidden;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;     
+}
+.thumbimguser img{
+    width: 25px;
+    height: 25px; 
+}
+
+.thumbimguser.medio{
+    position: relative;
+    width: 50px;
+    height: 50px; 
+    margin: 0 10px 0 0;
+    overflow: hidden;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;   
+    z-index: 1000;
+}
+.thumbimguser.medio img{
+    width: 50px;
+    height: 50px; 
+}
 
 .respsugeridas .post{
     border-bottom: 1px solid #BCE8F1;

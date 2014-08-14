@@ -114,7 +114,7 @@ class pergunta {
         $sql = 'select desc_pergunta,data_reg,idpergunta,idusuario from qsaberemake.pergunta order by data_reg desc';
         $result = $this->banco->executequery($sql);
         while ($row = mysqli_fetch_assoc($result)) {
-            $sql2 = 'select nome_exibicao from qsaberemake.usuario where idusuario =' . $row["idusuario"];
+            $sql2 = 'select nome_exibicao,imguser from qsaberemake.usuario where idusuario =' . $row["idusuario"];
             $result2 = $this->banco->executequery($sql2);
             $row2 = mysqli_fetch_assoc($result2);
 
@@ -122,8 +122,10 @@ class pergunta {
             $desc_pergunta = utf8_decode($row["desc_pergunta"]);
             $nome_exibicao = utf8_decode($row2["nome_exibicao"]);
             $data_reg = $row["data_reg"];
-
-            $html = "<li class='list-group-item' id='$idpergunta'>                        
+            $resp_imguser = "../img/users/".($row2['imguser'] =='' ? 'userdefault.jpg' : $row2['imguser'] );
+            
+            $html = "<li class='list-group-item' id='$idpergunta'>     
+                        <div class='thumbimguser medio'><img src='".$resp_imguser."' /></div>
                         <a href='../view/view_pergunta.php?pergunta=$idpergunta'>$desc_pergunta</a></p>by:$nome_exibicao date:$data_reg
                     </li>";
 

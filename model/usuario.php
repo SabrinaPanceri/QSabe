@@ -205,10 +205,15 @@ class usuario {
                 . 'and perg.idpergunta not in (select idpergunta from qsaberemake.resposta '
                 .' where idusuario = '.$this->idusuario.' )'
                 .'order by data_reg desc';
-        $result = $this->banco->executequery($sql);
+        $result = $this->banco->executequery($sql);       
         while($row = mysqli_fetch_assoc($result)){
+            $sql2 = 'select imguser from pergunta as p join usuario as u on p.idusuario = u.idusuario where idpergunta ='.$row["idpergunta"].' ';
+            $result2 = $this->banco->executequery($sql2);  
+            $row2 = mysqli_fetch_assoc($result2);
+            $resp_imguser = "../img/users/".($row2['imguser'] =='' ? 'userdefault.jpg' : $row2['imguser'] );       
             $html = '<div class="post"> '
                     . '<div class="entry list-group-item" id="'.$row["idpergunta"].'">'
+                    . '<div class="thumbimguser"><img src="'.$resp_imguser.'" /></div>'
                     . '<p><a href="../view/view_pergunta.php?pergunta='.$row["idpergunta"].'">'.
                     utf8_decode($row["desc_pergunta"]).'</a></p>'
                     . 'date:'.$row["data_reg"].
