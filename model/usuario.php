@@ -19,6 +19,8 @@ class usuario {
     var $password;
     var $data;
     var $especialidade;
+    var $imguser;
+    
 
     public function __construct() {
         $this->banco = new BD();
@@ -43,7 +45,7 @@ class usuario {
 
         if (mysqli_num_rows($result) > 0) {
             //verifica se a senha está correta
-            $sql = 'select idusuario,nome,tipo,nome_exibicao from qsaberemake.usuario where login = \'' . $usuario . '\' and senha = \'' . $senha . '\'';
+            $sql = 'select idusuario,nome,tipo,imguser,nome_exibicao from qsaberemake.usuario where login = \'' . $usuario . '\' and senha = \'' . $senha . '\'';
             $result = $this->banco->executequery($sql);
             if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_assoc($result);
@@ -53,6 +55,7 @@ class usuario {
                 $_SESSION["nome"] = utf8_decode($row['nome']);
                 $_SESSION["nome_exibicao"] = utf8_decode($row['nome_exibicao']);
                 $_SESSION["tipo"] = $row['tipo'];
+                $_SESSION["imguser"] = ( $row['imguser'] =='' ? 'userdefault.jpg' : $row['imguser'] );
                 $_SESSION["logado"] = TRUE;
                 return TRUE;
             } else {
@@ -84,13 +87,14 @@ class usuario {
          
         return false;
     }  else {
+        
         //acerta a data
         $data = substr($this->data, -4, 4).substr($this->data, -8, 3).'/'.substr($this->data, -10, 2);
         //cria usuario
         $_SESSION['msg_error']= '';
         //verifica se o usuário existe
-        $sql = 'insert into qsaberemake.usuario (nome,login,senha,tipo,data_nascimento,data_reg,nome_exibicao)'
-                . 'values (\''.  $this->nome.'\',\''.$this->user.'\',\''.$this->password.'\',2,\''.$data.'\',now(),\''.$this->nome_exibicao.'\')';
+        $sql = 'insert into qsaberemake.usuario (nome,login,senha,tipo,data_nascimento,data_reg,nome_exibicao,imguser)'
+                . 'values (\''.  $this->nome.'\',\''.$this->user.'\',\''.$this->password.'\',2,\''.$data.'\',now(),\''.$this->nome_exibicao.'\',\''.$this->imguser.'\')';
         $this->banco->executequery($sql);
         //preenche variaveis
         $this->pesquisabanco($this->user,  $this->password);

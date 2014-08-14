@@ -7,9 +7,16 @@
                     </h3>
                 </div>
                 <div class="panel-body">
-                        <?php
-                            echo $_SESSION['nome_exibicao'];                            
-                        ?>
+                    <div class="dadosuser">
+                        <div class="dadosuserimg">
+                            <img src="../img/users/<?php echo $_SESSION['imguser']?>">
+                        </div>
+                        <div class="dadosusernome">
+                            <?php
+                                echo $_SESSION['nome_exibicao'];                            
+                            ?>                        
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-footer">
                     <?php

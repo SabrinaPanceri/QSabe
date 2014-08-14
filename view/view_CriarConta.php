@@ -79,7 +79,7 @@ include_once "../model/categoria.php";
             </div>
             <div class="row clearfix">
                 <div class="col-md-8 column">
-                    <form role="form" method="post" action="../controller/controller_criarusuario.php" onsubmit="return valida(this);">
+                    <form role="form" method="post" action="../controller/controller_criarusuario.php" onsubmit="return valida(this);" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nome Completo </label>
                             <input type="text"  name="nome_txt" maxlength="45" class="form-control" id="exampleInputEmail1">
@@ -121,7 +121,7 @@ include_once "../model/categoria.php";
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">Foto </label>
-                            <input type="file" id="exampleInputFile">
+                            <input type="file" id="Filedata" name="Filedata">
                             <p class="help-block">
                             </p>
                         </div>

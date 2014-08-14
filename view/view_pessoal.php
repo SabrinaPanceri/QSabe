@@ -21,7 +21,7 @@ include_once "../model/usuario.php";
 
             <?php include_once 'menutopo.php'; ?>
 
-
+            
             <div class="row clearfix">
 
                 <?php include_once 'usuariosdados.php'; ?>

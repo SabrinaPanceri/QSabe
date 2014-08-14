@@ -3,3 +3,22 @@
 .post{
     margin: 0 0 10px 0;
 }
+
+
+.dadosuser{
+    margin: 0 auto;
+    text-align: center;
+}
+.dadosuserimg{
+    overflow: hidden;
+    margin: 0 auto 5px auto;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;    
+    width: 100px;
+    height: 100px;
+}
+.dadosusernome{
+    font-size: 16px;
+    font-weight: bold;
+}
