@@ -84,10 +84,49 @@ class resposta {
      */    
     function buscarespostaspararecomendacao() {
         
+        //Buscando a PERGUNTA
+        $sql1 = 'select desc_pergunta,data_reg,idusuario from qsaberemake.pergunta where idpergunta =' . $this->idpergunta;
+        $result1 = $this->banco->executequery($sql1);
+        $row1 = mysqli_fetch_assoc($result1);
+        $a  = utf8_decode($row1["desc_pergunta"]);
         
-        
-        
-        
+        //MONTANDO o vetor de RESPOSTAS
+        $b = array();
+        $sql = 'select desc_resposta,data_reg,idresposta,idusuario from qsaberemake.resposta';
+        $result = $this->banco->executequery($sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $b[] = $row['desc_resposta'];
+        }
+                
+        //Preparando para chamar COSINUS
+        // LOWER  A
+        $a = limpaString($a);
+        // LOWER o array B
+        foreach ($b as $i => $item){
+            $b[$i] = limpaString($item);
+        }              
+        $pergunta = split(' ',$a);
+        $saida = array();
+        $cosinus = array();
+        foreach ($b as $resp){
+            $resposta = split(' ',$resp);
+            $cos = cosinusTokens($pergunta, $resposta);
+            if($cos >= 0.1){
+                $saida[]   = $resp;
+                $cosinus[] = $cos;
+            }            
+        }
+        array_multisort($cosinus,$saida);
+        array_reverse($cosinus);
+        array_reverse($saida);
+        //FIM cosinus        
+        $html ='';
+        $html_geral ='';
+        foreach ($saida as $resposta){
+            $html .= '<div class="post"><div class="entry"><p>'.$resposta.'</p></div></div>';
+        }
+        $html_geral .=  $html;
+        return $html_geral;
     }
     
     

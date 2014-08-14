@@ -9,5 +9,6 @@ function limpaString($aux){
         $aux = preg_replace('/[^ a-z0-9]/i', ' ', $aux);
         //$aux = str_replace(" ", "-", $aux);
         $aux = strtolower($aux);
+        $aux = trim($aux);
         return $aux;
 }

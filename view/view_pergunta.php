@@ -63,16 +63,18 @@ include_once "../model/resposta.php";
                             <h4 style="margin: 0">Repostas Sugeridas</h4>
                         </div>
                         <div class="panel-body">
-                            <?php
-                            $perguntapag->idpergunta = $_GET["pergunta"];
-                            $_SESSION["idpergunta"] = $perguntapag->idpergunta;
-                            
-                            $respostapag1 = new resposta();
-                            $respostapag1->idpergunta = $_GET["pergunta"];
-                            $respostapag1->user = $_SESSION["idusuario"];                            
-                            echo $respostapag1->buscarespostaspararecomendacao();
-                            
-                            ?>                            
+                            <div class="respsugeridas">
+                                <?php
+                                $perguntapag->idpergunta = $_GET["pergunta"];
+                                $_SESSION["idpergunta"] = $perguntapag->idpergunta;
+
+                                $respostapag1 = new resposta();
+                                $respostapag1->idpergunta = $_GET["pergunta"];
+                                $respostapag1->user = $_SESSION["idusuario"];                            
+                                echo $respostapag1->buscarespostaspararecomendacao();
+
+                                ?>                            
+                            </div>
                         </div>
                     </div>
         <!-- end header -->

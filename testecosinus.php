@@ -10,13 +10,13 @@ include("./lib/functions.php");
 
     
     //Pergunta
-    $a = "Qual o melhor time do mundo";
+    $a = "Qual o melhor time do mundo?";
     
     //Respostas
     $b = array("Melhor investimento da minha vida",
-               "Investimentos de vida em um mundo qualquer",
                "o Mundo onde time não vale nada",
                "Qual o mundo em que nao se vivem loucos",
+               "Investimentos de vida em um mundo qualquer",
                "Acho que já chega neh????");
             
     /*
@@ -42,12 +42,23 @@ include("./lib/functions.php");
     $pergunta = split(' ',$a);
     echo "Pergunta: \"",$a,"\"";      
     
+    $saida = array();
+    $cosinus = array();
+    
     foreach ($b as $resp){
             $resposta = split(' ',$resp);
             echo "<br><br> Resposta: \"",$resp,"\"<br>";
-            echo cosinusTokens($pergunta, $resposta);
-    }
             
+            $cos = cosinusTokens($pergunta, $resposta);
+            echo $cos;
+            
+            $saida[]   = $resp;
+            $cosinus[] = $cos;
+            
+    }     
+   array_multisort($cosinus,$saida);
+   echo "<br><br>SAIDA: \"",var_dump($saida),"\"";   
+   echo "<br><br>COS: \"",var_dump($cosinus),"\"";   
     
     
 ?>
