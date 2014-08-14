@@ -1,3 +1,14 @@
+<?php
+    session_start('');
+    session_cache_expire(10);    
+    
+    if (!isset($_SESSION["logado"]) || $_SESSION["logado"] != TRUE) {
+        $logado = false;        
+    }else{
+        $logado = true;
+    }
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -41,6 +52,8 @@
                     </p>
                 </div>
                 <div class="col-md-4 column">
+                    
+                    <?php if(!$logado){?>
                     <form class="form-horizontal" role="form" action="./controller/controller_autenticar.php" method="post">
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Usuario </label>
@@ -69,15 +82,27 @@
                         </div>
                     </form>
                     <?php
-                    session_start('');
-                    session_cache_expire(10);
                     if ($_SESSION != NULL) {
                         $mensagem = $_SESSION['msg_error'];
                         if (strlen($mensagem) > 1) {
                             echo '<p>' . $mensagem . '</p>';
                         }
                     }
-                    ?>
+                    ?>                    
+                    <?php }else{?>       
+                        
+                        
+                    <div class="well well-lg">
+                        <h3 style="margin: 0 0 20px 0">Olá, <?php echo $_SESSION['nome'] ?>!</h3>
+                        <a href="view/view_pessoal.php" class="btn btn-primary btn-block">Entrar</a>
+                        <br>
+                        <a href="controller/controller_logoff.php" class="btn btn-default btn-block">Sair</a>
+                    </div>
+                                                  
+                    
+                    <?php }?>
+                    
+
                 </div>
             </div>
         </div>
