@@ -76,6 +76,14 @@ class resposta {
         return $html_geral;
     }
     
+    /*
+     * Busca as Respostas para a Recomendação
+     */    
+    function buscarespostaspararecomendacao() {
+        
+    }
+    
+    
     function buscaresposta(){
         
         //selection da avaliação da resposta

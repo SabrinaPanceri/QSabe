@@ -17,6 +17,7 @@
     border-radius: 10px;    
     width: 100px;
     height: 100px;
+    background: url('../img/users/userdefault.jpg');
 }
 .dadosusernome{
     font-size: 16px;

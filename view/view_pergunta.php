@@ -58,6 +58,23 @@ include_once "../model/resposta.php";
                         </br>
                         
                     </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h4 style="margin: 0">Repostas Sugeridas</h4>
+                        </div>
+                        <div class="panel-body">
+                            <?php
+                            $perguntapag->idpergunta = $_GET["pergunta"];
+                            $_SESSION["idpergunta"] = $perguntapag->idpergunta;
+                            
+                            $respostapag1 = new resposta();
+                            $respostapag1->idpergunta = $_GET["pergunta"];
+                            $respostapag1->user = $_SESSION["idusuario"];                            
+                            echo $respostapag1->buscarespostaspararecomendacao();
+                            
+                            ?>                            
+                        </div>
+                    </div>
         <!-- end header -->
         <hr />
         
@@ -68,14 +85,14 @@ include_once "../model/resposta.php";
                         <!-- COLOCAR FUNÇÃO PARA ALIMENTAR COM AS RESPOSTAS FEITAS PELO USUÁRIO-->
                         <div class="list-group-item">
                             <?php
-                        $respostapag = new resposta();
-                        $respostapag->idpergunta = $_GET["pergunta"];
-                        $respostapag->user = $_SESSION["idusuario"];
-                        $respostapag->verificaRespostas();
-                        
-                        if ($respostapag->respostas > 0) {
-                            echo $respostapag->buscarespostas();
-                        }
+                            $respostapag = new resposta();
+                            $respostapag->idpergunta = $_GET["pergunta"];
+                            $respostapag->user = $_SESSION["idusuario"];
+                            $respostapag->verificaRespostas();
+
+                            if ($respostapag->respostas > 0) {
+                                echo $respostapag->buscarespostas();
+                            }
                             ?>
                         </div>
                     </div>

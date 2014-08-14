@@ -59,7 +59,7 @@ function cosinus(array $a, array $b) {
 
 // usage:
 // o primeiro array tem que ser a pergunta que foi feita
-// segundo array tem que ser as respostas que estiverem cadastradas no banco
+// segundo array tem que ser as respostas que estiverem cadastradas no banco  
 cosinus(array(1, 1, 1, 0, 3), array(2, 3, 0, 0, 1));
 
 
