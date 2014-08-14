@@ -28,34 +28,40 @@ include_once "../model/resposta.php";
 
     <body>
         <div class="container">
-         <?php include_once 'menutopo.php'; ?>
+            <?php $page = 'pergunta';
+            include_once 'menutopo.php'; ?>
             <div class="row clearfix">
 
-                <?php include_once 'usuariosdados.php'; ?>
-            
-                
+<?php include_once 'usuariosdados.php'; ?>
+
+
                 <div class="col-md-6 column">
-                    <div class="list-group">
-                        <h4 class="list-group-item-heading">
-                            <a href="#" class="list-group-item active">Pergunta</a>
-                        </h4>
-                        <!-- COLOCAR FUNÇÃO PARA ALIMENTAR COM AS PERGUNTAS FEITAS PELO USUÁRIO-->
-                        <?php
-                        $perguntapag = new pergunta();
-                        $perguntapag->idpergunta = $_GET["pergunta"];
-                        $_SESSION["idpergunta"] = $perguntapag->idpergunta;
-                        $perguntapag->carregarPergunta();
-                        echo $perguntapag->desc;
-                        echo '</br></br>by: ' . $perguntapag->nome_user. '  '. $perguntapag->data_reg;
-                        ?>
-                        
-                        <form name="resposta_form" method="post" action="../controller/controller_novaReposta.php">
-                        </br></br></br>    
-                        <textArea rows="5" cols="50" name="resposta_txt">Digite Aqui sua Reposta!</textarea>
-                            </br>
-                            <input type="submit" name="resposta_btn" value="Adicionar Resposta"/> 
-                        </form>
-                        </br>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 style="margin: 0">
+                                Pergunta
+                            </h4>
+                        </div>
+                        <div class="panel panel-body">
+                            <!-- COLOCAR FUNÇÃO PARA ALIMENTAR COM AS PERGUNTAS FEITAS PELO USUÁRIO-->
+                            <?php
+                            $perguntapag = new pergunta();
+                            $perguntapag->idpergunta = $_GET["pergunta"];
+                            $_SESSION["idpergunta"] = $perguntapag->idpergunta;
+                            $perguntapag->carregarPergunta();
+                            echo '<div class="thumbimguser medio"><img src="'.$perguntapag->imguser.'" /></div>';
+                            echo $perguntapag->desc;
+                            echo '</br></br><div class="assinatura">by: ' . $perguntapag->nome_user . '  ' . $perguntapag->data_reg.' </div>';
+                            ?>
+
+                            <form name="resposta_form" method="post" action="../controller/controller_novaReposta.php">
+                                </br>
+                                <textArea rows="3" cols="50" name="resposta_txt" class="form-control" style="resize:vertical" placeholder="Digite Aqui sua Resposta!"></textarea>
+                                </br>
+                                <input type="submit" class="btn btn-default" name="resposta_btn" value="Adicionar Resposta"/> 
+                            </form>
+                            
+                        </div>
                         
                     </div>
                     <div class="panel panel-info">
@@ -70,9 +76,8 @@ include_once "../model/resposta.php";
 
                                 $respostapag1 = new resposta();
                                 $respostapag1->idpergunta = $_GET["pergunta"];
-                                $respostapag1->user = $_SESSION["idusuario"];                            
+                                $respostapag1->user = $_SESSION["idusuario"];
                                 echo $respostapag1->buscarespostaspararecomendacao();
-
                                 ?>                            
                             </div>
                         </div>
@@ -80,25 +85,29 @@ include_once "../model/resposta.php";
         <!-- end header -->
         <hr />
         
-                 <div class="list-group">
-                        <h4 class="list-group-item-heading">
-                            <a href="#" class="list-group-item active">Respostas</a>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 style="margin: 0">
+                           Respostas
                         </h4>
+                    </div>
+                    <div class="panel-body">
                         <!-- COLOCAR FUNÇÃO PARA ALIMENTAR COM AS RESPOSTAS FEITAS PELO USUÁRIO-->
                         <div class="list-group-item">
-                            <?php
-                            $respostapag = new resposta();
-                            $respostapag->idpergunta = $_GET["pergunta"];
-                            $respostapag->user = $_SESSION["idusuario"];
-                            $respostapag->verificaRespostas();
+                                <?php
+                                $respostapag = new resposta();
+                                $respostapag->idpergunta = $_GET["pergunta"];
+                                $respostapag->user = $_SESSION["idusuario"];
+                                $respostapag->verificaRespostas();
 
-                            if ($respostapag->respostas > 0) {
-                                echo $respostapag->buscarespostas();
-                            }
-                            ?>
+                                if ($respostapag->respostas > 0) {
+                                    echo $respostapag->buscarespostas();
+                                }
+                                ?>
                         </div>
                     </div>
                 </div>
+            </div>        
             
             </div>
 
@@ -107,7 +116,7 @@ include_once "../model/resposta.php";
 <!-- end page -->
 <hr />
     
-            <?php include_once 'footer.php' ?>
+        <?php include_once 'footer.php' ?>
 
 </body>
 </html>

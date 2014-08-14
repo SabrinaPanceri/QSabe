@@ -21,7 +21,7 @@ include_once "../model/categoria.php";
     <body>
         <div class="container">
 
-            <?php include 'menutopo.php'; ?>
+            <?php $page='pergunta'; include 'menutopo.php'; ?>
 
             <div class="row clearfix">
 

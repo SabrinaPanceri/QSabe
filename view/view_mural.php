@@ -20,7 +20,7 @@ include_once "../model/pergunta.php";
     <body>
         <div class="container">
 
-            <?php include 'menutopo.php'; ?>
+            <?php $page='mural'; include 'menutopo.php'; ?>
 
             <div class="row clearfix">            
 

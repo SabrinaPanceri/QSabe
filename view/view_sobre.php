@@ -7,7 +7,7 @@
     <body>
         <div class="container">
 
-            <?php include 'menutopo.php'; ?>             
+            <?php $page='sobre'; include 'menutopo.php'; ?>             
 
             <div class="row">
                 <div class="box">

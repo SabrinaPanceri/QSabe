@@ -118,11 +118,16 @@ class usuario {
         $result = $this->banco->executequery($sql);
 
         while ($row = mysqli_fetch_assoc($result)) {
-            $idpergunta = $row["idpergunta"];
+            $idpergunta = $row["idpergunta"];            
+                $sql2 = 'select imguser from pergunta as p join usuario as u on p.idusuario = u.idusuario where idpergunta ='.$idpergunta.' ';
+                $result2 = $this->banco->executequery($sql2);  
+                $row2 = mysqli_fetch_assoc($result2);
+                $resp_imguser = "../img/users/".($row2['imguser'] =='' ? 'userdefault.jpg' : $row2['imguser'] );               
             $desc_pergunta = utf8_decode($row["desc_pergunta"]);
             $data_reg = $row["data_reg"];
             $html = "<div class='post'>
                         <div class='entry list-group-item' id='$idpergunta'>
+                             <div class='thumbimguser'><img src='$resp_imguser' /></div>
                             <p><a href='../view/view_pergunta.php?pergunta=$idpergunta'>
                                 $desc_pergunta
                             </a>
@@ -139,17 +144,22 @@ class usuario {
 
         //cria usuario
         $_SESSION['msg_error'] = '';
-        $html_geral = '';
+        $html_geral = '';        
         //verifica se a pergunta existe
         $sql = 'select desc_pergunta,data_reg,idpergunta from qsaberemake.pergunta where idusuario <>' . $this->idusuario . ' order by data_reg desc LIMIT 3';
         $result = $this->banco->executequery($sql);
 
-        while ($row = mysqli_fetch_assoc($result)) {
+        while ($row = mysqli_fetch_assoc($result)) {                                                
             $idpergunta = $row["idpergunta"];
             $desc_pergunta = utf8_decode($row["desc_pergunta"]);
             $data_reg = $row["data_reg"];
+                $sql2 = 'select imguser from pergunta as p join usuario as u on p.idusuario = u.idusuario where idpergunta ='.$row["idpergunta"].' ';
+                $result2 = $this->banco->executequery($sql2);  
+                $row2 = mysqli_fetch_assoc($result2);
+                $resp_imguser = "../img/users/".($row2['imguser'] =='' ? 'userdefault.jpg' : $row2['imguser'] );             
             $html = "<div class='post'>
                         <div class='entry list-group-item' id='$idpergunta'>
+                            <div class='thumbimguser'><img src='$resp_imguser' /></div>
                             <p><a href='../view/view_pergunta.php?pergunta=$idpergunta'>
                                 $desc_pergunta
                             </a>
@@ -167,17 +177,19 @@ class usuario {
         //cria usuario
         $_SESSION['msg_error'] = '';
         $html_geral = '';
+        $resp_imguser = "../img/users/".$_SESSION["imguser"];
         //verifica se a pergunta existe
         $sql = 'select desc_resposta,data_reg,idresposta,idpergunta from qsaberemake.resposta where idusuario =' . $this->idusuario . ' order by data_reg desc';
         $result = $this->banco->executequery($sql);
 
-        while ($row = mysqli_fetch_assoc($result)) {
+        while ($row = mysqli_fetch_assoc($result)) {            
             $idresposta = $row["idresposta"];
-            $idpergunta = $row["idpergunta"];
+            $idpergunta = $row["idpergunta"];                   
             $desc_resposta = utf8_decode($row["desc_resposta"]);
             $data_reg = $row["data_reg"];
             $html = "<div class='post'>
-                            <div class='entry list-group-item' id='$idresposta'>
+                            <div class='entry list-group-item' id='$idresposta'>                                
+                                <div class='thumbimguser'><img src='$resp_imguser' /></div>
                                 <p><a href='../view/view_pergunta.php?pergunta=$idpergunta'>
                                     $desc_resposta
                                 </a>

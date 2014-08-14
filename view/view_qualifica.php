@@ -25,7 +25,7 @@ include_once "../model/resposta.php";
 
     <body>
         <div class="container">
-         <?php include_once 'menutopo.php'; ?>
+         <?php  $page = 'qualifica'; include_once 'menutopo.php'; ?>
             <div class="row clearfix">
 
                 <?php include_once 'usuariosdados.php'; ?>
@@ -49,7 +49,7 @@ include_once "../model/resposta.php";
                         $_SESSION["idpergunta"] = $perguntapag->idpergunta;
                         $perguntapag->carregarPergunta();
                         echo $perguntapag->desc;
-                        echo '</br> by:'.$perguntapag->nome_user;
+                        echo '</br><div class="assinatura">by:'.$perguntapag->nome_user.'</div>';
                         echo '</br></br></br>';
                         echo $respostapag->buscaresposta();
                         ?>

@@ -24,7 +24,7 @@ include_once "../model/resposta.php";
 
     <body>
         <div class="container">
-         <?php include_once 'menutopo.php'; ?>
+         <?php  $page = 'resultadopesquisa'; include_once 'menutopo.php'; ?>
             <div class="row clearfix">
 
                 <?php include_once 'usuariosdados.php'; ?>

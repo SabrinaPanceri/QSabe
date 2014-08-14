@@ -18,8 +18,8 @@ include_once "../model/usuario.php";
 
     <body>
         <div class="container">
-
-            <?php include_once 'menutopo.php'; ?>
+            
+            <?php $page = 'pessoal'; include_once 'menutopo.php'; ?>
 
             
             <div class="row clearfix">
@@ -77,9 +77,9 @@ include_once "../model/usuario.php";
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <a class="panel-title" data-toggle="collapse" data-parent="#panel-638496" href="#panel-element-249930">Perguntas Para Eu Responder!</a>
+                                <a class="panel-title" data-toggle="collapse" data-parent="#panel-638496" href="#panel-element-249931">Perguntas Para Eu Responder!</a>
                             </div>
-                            <div id="panel-element-249930" class="panel-collapse collapse in">
+                            <div id="panel-element-249931" class="panel-collapse collapse in">
                                 <div class="panel-body">
                                     <!-- COLOCAR FUNÇÃO PARA ALIMENTAR COM AS PERGUNTAS NOVAS CADASTRADAS POR OUTROS USUÁRIOS-->
                                     <?php

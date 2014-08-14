@@ -23,7 +23,7 @@ include_once "../model/categoria.php";
 
     <body>
         <div class="container">
-         <?php include_once 'menutopo.php'; ?>
+         <?php  $page = 'pergunta'; include_once 'menutopo.php'; ?>
             <div class="row clearfix">
 
                 <?php include_once 'usuariosdados.php'; ?>

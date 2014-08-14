@@ -11,6 +11,7 @@ class pergunta {
 
     var $banco;
     var $user;
+    var $imguser;
     var $nome_user;
     var $desc;
     var $categoria;
@@ -70,9 +71,10 @@ class pergunta {
         $this->data_reg = $row["data_reg"];
 
         //verifica se a pergunta existe
-        $sql = 'select nome_exibicao, count(idusuario) as contadoruser from qsaberemake.usuario where idusuario =' . $this->user;
-        $result = $this->banco->executequery($sql);
+        $sql = 'select nome_exibicao,imguser, count(idusuario) as contadoruser from qsaberemake.usuario where idusuario =' . $this->user;        
+        $result = $this->banco->executequery($sql);               
         $row = mysqli_fetch_assoc($result);
+        $this->imguser = "../img/users/".($row['imguser'] =='' ? 'userdefault.jpg' : $row['imguser'] );
         if ($row["contadoruser"] == 0) {
             $_SESSION['nome_exibicao'] = 'Usuário Não encontrado';
             $this->nome_user = 'Usuário Não encontrado';
@@ -126,7 +128,7 @@ class pergunta {
             
             $html = "<li class='list-group-item' id='$idpergunta'>     
                         <div class='thumbimguser medio'><img src='".$resp_imguser."' /></div>
-                        <a href='../view/view_pergunta.php?pergunta=$idpergunta'>$desc_pergunta</a></p>by:$nome_exibicao date:$data_reg
+                        <a href='../view/view_pergunta.php?pergunta=$idpergunta'>$desc_pergunta</a></p><div class='assinatura'>by:$nome_exibicao date:$data_reg</div>
                     </li>";
 
             $html_geral = $html_geral . $html;
@@ -159,7 +161,7 @@ class pergunta {
             $data_reg = $row["data_reg"];
 
             $html = "<li class='list-group-item' id='$idpergunta'>                        
-                        <a href='../view/view_pergunta.php?pergunta=$idpergunta'>$desc_pergunta</a></p>by:$nome_exibicao date:$data_reg
+                        <a href='../view/view_pergunta.php?pergunta=$idpergunta'>$desc_pergunta</a></p><div class='assinatura'>by:$nome_exibicao date:$data_reg</div>
                     </li>";
 
             $html_geral = $html_geral . $html;

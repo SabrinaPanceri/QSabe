@@ -70,9 +70,9 @@ class resposta {
             if($row["idusuario"]==$this->user)
                 {
                 //Não pode qualificar a propria resposta
-                    $html = '<div class="post"><div class="thumbimguser"><img src="'.$resp_imguser.'" /></div><div class="entry"><p>'.utf8_decode($row["desc_resposta"]).'</p>by:'.utf8_decode($row2["nome_exibicao"]).', '.$row["data_reg"].' </br></div> </div>';
+                    $html = '<div class="post"><div class="thumbimguser"><img src="'.$resp_imguser.'" /></div><div class="entry"><p>'.utf8_decode($row["desc_resposta"]).'</p><div class="assinatura">by:'.utf8_decode($row2["nome_exibicao"]).', '.$row["data_reg"].' </div></br></div> </div>';
                 }else{
-                    $html = '<div class="post"><div class="thumbimguser"><img src="'.$resp_imguser.'" /></div><div class="entry"><p>'.utf8_decode($row["desc_resposta"]).'</p>by:'.utf8_decode($row2["nome_exibicao"]).', '.$row["data_reg"].' </br>'
+                    $html = '<div class="post"><div class="thumbimguser"><img src="'.$resp_imguser.'" /></div><div class="entry"><p>'.utf8_decode($row["desc_resposta"]).'</p><div class="assinatura">by:'.utf8_decode($row2["nome_exibicao"]).', '.$row["data_reg"].' </div></br>'
                             . '<p><a href="../view/view_qualifica.php?resposta='.$row["idresposta"].'">Avalie Está resposta</a></p></div> </div>';
                 }
             $html_geral = $html_geral . $html;
@@ -148,7 +148,7 @@ class resposta {
         $sql2 = 'select nome_exibicao from qsaberemake.usuario where idusuario ='. $row["idusuario"];
         $result2 = $this->banco->executequery($sql2);
         $row2 = mysqli_fetch_assoc($result2);
-        $html = '<p>'.utf8_decode($row["desc_resposta"]).'</p>by:'.utf8_decode($row2["nome_exibicao"]).', '.$row["data_reg"];
+        $html = '<p>'.utf8_decode($row["desc_resposta"]).'</p><div class="assinatura">by:'.utf8_decode($row2["nome_exibicao"]).', '.$row["data_reg"].'</div>';
         $html_geral= $html_geral.$html;
         
         return $html_geral;
