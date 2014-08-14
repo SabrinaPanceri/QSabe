@@ -1,8 +1,14 @@
 <?php if(!isset($page)){$page='inicial';}?>
 <div class="row clearfix">
         <div class="col-md-12 column">
-            <div class="page-header">
-                <ul class="nav nav-pills">
+            <div style="float: left">
+                <h3 style="margin: 7px 10px 0 0;font-weight: bold; color: #428BCA">
+                    QSabe 
+                </h3>
+            </div>
+            <div class="page-header" style="margin: 30px 0 20px 0;">
+                <ul class="nav nav-pills">                                                            
+                    
                     <li class="<?php echo ($page=='inicial')? "active":"";?>" >
                         <a href="../index.php">Inicial</a>
                     </li>
