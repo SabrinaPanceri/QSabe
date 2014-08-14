@@ -5,11 +5,7 @@ if (!isset($_SESSION)) {
 //verificar se usuario está logado
 include_once("../controller/is_logado.php");
 session_cache_expire(10);
-//echo $_SESSION['usuario'];
-//echo '</br>';
-//echo $_SESSION['nome'];
-//echo '</br>';
-//echo $_SESSION['tipo'];
+
 include_once "../model/usuario.php";
 ?>
 

@@ -1,6 +1,5 @@
 <?php
-//verificar se usuario está logado
-include_once("../controller/is_logado.php");
+
 include_once "../model/categoria.php";
 
 ?>
